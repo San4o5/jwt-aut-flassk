@@ -12,6 +12,8 @@ load_dotenv()
 
 app = Flask(__name__)
 SECRET = os.getenv("JWT_SECRET")
+if not SECRET:
+    raise RuntimeError("JWT_SECRET не заданий. Створіть .env з JWT_SECRET=...")
 
 @app.post("/login")
 def login():
